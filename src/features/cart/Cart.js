@@ -73,7 +73,7 @@ export default function Cart() {
                       <div className="flex flex-1 items-end justify-between text-sm">
                         <div className="text-gray-500">
                           <label
-                            htmlFor="quantity"
+                            htmlhtmlFor="quantity"
                             className="inline mr-5 text-sm font-medium leading-6 text-gray-900"
                           >
                             Qty

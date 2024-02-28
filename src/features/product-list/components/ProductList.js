@@ -311,7 +311,7 @@ function MobileFilter({
                                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                 />
                                 <label
-                                  htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
+                                  htmlhtmlFor={`filter-mobile-${section.id}-${optionIdx}`}
                                   className="ml-3 min-w-0 flex-1 text-gray-500"
                                 >
                                   {option.label}
@@ -372,7 +372,7 @@ function DesktopFilter({ handleFilter, filters }) {
                         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                       />
                       <label
-                        htmlFor={`filter-${section.id}-${optionIdx}`}
+                        htmlhtmlFor={`filter-${section.id}-${optionIdx}`}
                         className="ml-3 text-sm text-gray-600"
                       >
                         {option.label}
