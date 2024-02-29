@@ -59,7 +59,7 @@ function Checkout() {
 
                   <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div className="sm:col-span-3">
-                      <label htmlhtmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
+                      <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
                         First name
                       </label>
                       <div className="mt-2">
@@ -74,7 +74,7 @@ function Checkout() {
                     </div>
 
                     <div className="sm:col-span-3">
-                      <label htmlhtmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">
+                      <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">
                         Last name
                       </label>
                       <div className="mt-2">
@@ -89,7 +89,7 @@ function Checkout() {
                     </div>
 
                     <div className="sm:col-span-4">
-                      <label htmlhtmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                      <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                         Email address
                       </label>
                       <div className="mt-2">
@@ -104,7 +104,7 @@ function Checkout() {
                     </div>
 
                     <div className="sm:col-span-3">
-                      <label htmlhtmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
+                      <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
                         Country
                       </label>
                       <div className="mt-2">
@@ -122,7 +122,7 @@ function Checkout() {
                     </div>
 
                     <div className="col-span-full">
-                      <label htmlhtmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
+                      <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
                         Street address
                       </label>
                       <div className="mt-2">
@@ -137,7 +137,7 @@ function Checkout() {
                     </div>
 
                     <div className="sm:col-span-2 sm:col-start-1">
-                      <label htmlhtmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
+                      <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
                         City
                       </label>
                       <div className="mt-2">
@@ -152,7 +152,7 @@ function Checkout() {
                     </div>
 
                     <div className="sm:col-span-2">
-                      <label htmlhtmlFor="region" className="block text-sm font-medium leading-6 text-gray-900">
+                      <label htmlFor="region" className="block text-sm font-medium leading-6 text-gray-900">
                         State / Province
                       </label>
                       <div className="mt-2">
@@ -167,7 +167,7 @@ function Checkout() {
                     </div>
 
                     <div className="sm:col-span-2">
-                      <label htmlhtmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">
+                      <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">
                         ZIP / Postal code
                       </label>
                       <div className="mt-2">
@@ -246,7 +246,7 @@ function Checkout() {
                           type="radio"
                           className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                         />
-                        <label htmlhtmlFor="cash" className="block text-sm font-medium leading-6 text-gray-900">
+                        <label htmlFor="cash" className="block text-sm font-medium leading-6 text-gray-900">
                           Cash
                         </label>
                       </div>
@@ -257,7 +257,7 @@ function Checkout() {
                           type="radio"
                           className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                         />
-                        <label htmlhtmlFor="card" className="block text-sm font-medium leading-6 text-gray-900">
+                        <label htmlFor="card" className="block text-sm font-medium leading-6 text-gray-900">
                           Card
                         </label>
                       </div>

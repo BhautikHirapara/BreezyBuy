@@ -2433,20 +2433,7 @@
     }
   ],
   "users": [
-    {
-      "id": "1945",
-      "email": "user1@gmail.com",
-      "password": "User@123"
-    },
-    {
-      "id": "cac5",
-      "email": "a@gmail.com",
-      "password": "User@123"
-    },
-    {
-      "id": "82bb",
-      "email": "b@gmail.com",
-      "password": "User@123"
-    }
+  ],
+  "cart": [
   ]
 }
