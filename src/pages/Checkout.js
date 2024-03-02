@@ -5,6 +5,8 @@ import { Link, Navigate } from 'react-router-dom';
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from '../features/cart/cartSlice';
 import { checkUserAsync, selectLoggedInUser, updateUserAsync } from '../features/auth/authSlice';
 import { useForm } from 'react-hook-form';
+import { addOrder } from '../features/order/orderAPI';
+import { addOrderAsync } from '../features/order/orderSlice';
 
 function Checkout() {
   const user = useSelector(selectLoggedInUser);
@@ -37,6 +39,10 @@ function Checkout() {
       setPaymentMethod('card')
     else
       setPaymentMethod('cash')
+  }
+
+  const handleOrder = () => {
+    dispatch(addOrderAsync({user, items, totalAmount, totalItems, paymentMethod, selectedAddress}));
   }
 
   return (
@@ -342,6 +348,7 @@ function Checkout() {
               </p>
               <div className="mt-6">
                 <button
+                  onClick={handleOrder}
                   className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                 >
                   Order Now
