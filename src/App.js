@@ -19,6 +19,7 @@ import { useEffect } from "react";
 import { fetchItemsByUserIdAsync } from "./features/cart/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLoggedInUser } from "./features/auth/authSlice";
+import Error from "./pages/Error";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "/product-detail/:id",
     element: <Protected> <ProductDetailPage></ProductDetailPage></Protected> 
+  },
+  {
+    path: "*",
+    element: <Error></Error>
   },
 ]);
 function App() {
