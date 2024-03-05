@@ -3,10 +3,11 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from '../features/cart/cartSlice';
-import { checkUserAsync, selectLoggedInUser, updateUserAsync } from '../features/auth/authSlice';
+import { checkUserAsync, selectLoggedInUser } from '../features/auth/authSlice';
+import { updateUserAsync } from '../features/user/userSlice';
 import { useForm } from 'react-hook-form';
 import { addOrder } from '../features/order/orderAPI';
-import { addOrderAsync } from '../features/order/orderSlice';
+import { createOrderAsync, selectCurrentOrder } from '../features/order/orderSlice';
 
 function Checkout() {
   const user = useSelector(selectLoggedInUser);
@@ -14,7 +15,7 @@ function Checkout() {
   const [selectedAddress, setSelectedAddress] = useState(null)
   const [paymentMethod, setPaymentMethod] = useState('cash')
   const dispatch = useDispatch();
-  
+  const currentOrder = useSelector(selectCurrentOrder);
 
   const items = useSelector(selectItems);
   const totalAmount = items.reduce(
@@ -34,6 +35,7 @@ function Checkout() {
   const handleAddress = (e) => {
     setSelectedAddress(user.addresses[e.target.value]);
   }
+  
   const handlePayment = (e) => {
     if(paymentMethod=='cash')
       setPaymentMethod('card')
@@ -42,12 +44,16 @@ function Checkout() {
   }
 
   const handleOrder = () => {
-    dispatch(addOrderAsync({user, items, totalAmount, totalItems, paymentMethod, selectedAddress}));
+    if(selectedAddress)
+      dispatch(createOrderAsync({user, items, totalAmount, totalItems, paymentMethod, selectedAddress, status: 'pending'}));
+    else
+      alert("Kya kar raha hai bhai tu, Yeh sab doglapan hai, Address select kar tu pehle")
   }
 
   return (
     <>
       {items.length<1 && <Navigate to='/' replace={true}></Navigate> }
+      {currentOrder && <Navigate to={`/order-success/${currentOrder.id}`} replace={true}></Navigate> }
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
@@ -241,9 +247,8 @@ function Checkout() {
                             name="payments"
                             onChange={handlePayment}
                             type="radio"
-                            // value={'cash'}
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                            checked={paymentMethod === 'cash' ? 'true' : 'false'}
+                            checked={paymentMethod === "cash"}
                           />
                           <label htmlFor="cash" className="block text-sm font-medium leading-6 text-gray-900">
                             Cash
@@ -255,9 +260,8 @@ function Checkout() {
                             name="payments"
                             onChange={handlePayment}
                             type="radio"
-                            // value={'card'}
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                            checked={paymentMethod === 'card' ? 'true' : 'false'}
+                            checked={paymentMethod === "card"}
                           />
                           <label htmlFor="card" className="block text-sm font-medium leading-6 text-gray-900">
                             Card
@@ -349,7 +353,7 @@ function Checkout() {
               <div className="mt-6">
                 <button
                   onClick={handleOrder}
-                  className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                  className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                 >
                   Order Now
                 </button>
