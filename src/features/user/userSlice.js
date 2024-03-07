@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchLoggedInUserOrders, fetchLoggedInUser, updateUser } from './userAPI';
+import { fetchLoggedInUserOrders, updateUser, fetchLoggedInUser } from './userAPI';
 
 const initialState = {
   userOrders: [],
   status: 'idle',
-  userInfo: null
+  userInfo: null, // this info will be used in case of detailed user info, while auth will 
+  // only be used for loggedInUser id etc checks
 };
 
 export const fetchLoggedInUserOrderAsync = createAsyncThunk(
@@ -15,6 +16,7 @@ export const fetchLoggedInUserOrderAsync = createAsyncThunk(
     return response.data;
   }
 );
+
 
 export const fetchLoggedInUserAsync = createAsyncThunk(
   'user/fetchLoggedInUser',
@@ -27,8 +29,8 @@ export const fetchLoggedInUserAsync = createAsyncThunk(
 
 export const updateUserAsync = createAsyncThunk(
   'user/updateUser',
-  async (update) => {
-    const response = await updateUser(update);
+  async (id) => {
+    const response = await updateUser(id);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -49,7 +51,6 @@ export const userSlice = createSlice({
       })
       .addCase(fetchLoggedInUserOrderAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        // this info can be different or more from logged-in User info
         state.userOrders = action.payload;
       })
       .addCase(updateUserAsync.pending, (state) => {
@@ -57,14 +58,15 @@ export const userSlice = createSlice({
       })
       .addCase(updateUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.loggedInUser  = action.payload;
+        state.userOrders = action.payload;
       })
       .addCase(fetchLoggedInUserAsync.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(fetchLoggedInUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.userInfo  = action.payload;
+        // this info can be different or more from logged-in User info
+        state.userInfo = action.payload;
       });
   },
 });
