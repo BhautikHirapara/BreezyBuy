@@ -3,7 +3,7 @@ import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchProductByIdAsync, selectProductById } from '../productSlice';
+import { fetchProductsByIdAsync, selectProductById } from '../productSlice';
 import { addToCartAsync } from '../../cart/cartSlice';
 import { selectLoggedInUser } from '../../auth/authSlice';
 const colors= [
@@ -87,7 +87,7 @@ export default function ProductDetail() {
   }
 
   useEffect(()=>{
-    dispatch(fetchProductByIdAsync(params.id))
+    dispatch(fetchProductsByIdAsync(params.id))
   },[dispatch, params.id])
 
   return (

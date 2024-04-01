@@ -2,10 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { checkUser, createUser, signOut } from './authAPI';
 import { updateUser } from '../user/userAPI';
 
+
 const initialState = {
   loggedInUser: null,
   status: 'idle',
-  error: null,
+  error:null
 };
 
 export const createUserAsync = createAsyncThunk(
@@ -16,6 +17,7 @@ export const createUserAsync = createAsyncThunk(
     return response.data;
   }
 );
+
 
 export const updateUserAsync = createAsyncThunk(
   'user/updateUser',
@@ -37,17 +39,20 @@ export const checkUserAsync = createAsyncThunk(
 
 export const signOutAsync = createAsyncThunk(
   'user/signOut',
-  async (loginInfo) => {
-    const response = await signOut(loginInfo);
+  async (userId) => {
+    const response = await signOut(userId);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
 
-export const authSlice = createSlice({
+export const counterSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    increment: (state) => {
+      state.value += 1;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -68,7 +73,7 @@ export const authSlice = createSlice({
       .addCase(checkUserAsync.rejected, (state, action) => {
         state.status = 'idle';
         state.error = action.error;
-      })
+      }) 
       .addCase(updateUserAsync.pending, (state) => {
         state.status = 'loading';
       })
@@ -82,13 +87,15 @@ export const authSlice = createSlice({
       .addCase(signOutAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.loggedInUser = null;
-      });
+      })
+      
   },
 });
 
-export const selectLoggedInUser = (state) => state.auth.loggedInUser;
-export const selectError = (state) => state.auth.error;
+export const selectLoggedInUser = (state)=>state.auth.loggedInUser;
+export const selectError = (state)=>state.auth.error;
 
-// export const { } = authSlice.actions;
+export const { increment } = counterSlice.actions;
 
-export default authSlice.reducer;
+
+export default counterSlice.reducer;
