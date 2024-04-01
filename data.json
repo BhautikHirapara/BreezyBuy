@@ -2465,7 +2465,8 @@
           "state": "njn",
           "pinCode": "jnj"
         }
-      ]
+      ],
+      "role": "user"
     },
     {
       "id": "9941",
@@ -2481,7 +2482,8 @@
           "state": "gj",
           "pinCode": "265256"
         }
-      ]
+      ],
+      "role": "user"
     },
     {
       "id": "dd10",
@@ -2497,7 +2499,22 @@
           "phone": "75189625",
           "street": "vyhhj"
         }
-      ]
+      ],
+      "role": "user"
+    },
+    {
+      "id": "f3de",
+      "email": "admin@gmail.com",
+      "password": "Admin@123",
+      "addresses": [],
+      "role": "user"
+    },
+    {
+      "id": "55c4",
+      "email": "test@gmail.com",
+      "password": "Test@123",
+      "addresses": [],
+      "role": "user"
     }
   ],
   "cart": [],

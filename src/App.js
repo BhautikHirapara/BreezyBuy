@@ -1,4 +1,3 @@
-import { Counter } from "./features/counter/Counter";
 import './App.css';
 import Home from './pages/Home';
 import LoginPage from "./pages/LoginPage";
@@ -29,10 +28,18 @@ import { selectLoggedInUser } from "./features/auth/authSlice";
 import ForgotPassoword from "./features/auth/components/ForgotPassoword";
 import Logout from "./features/auth/components/Logout";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ProtectedAdmin from './features/auth/components/ProtectedAdmin';
+import AdminHome from './pages/AdminHome';
+import AdminProductDetailPage from './pages/AdminProductDetailPage';
+import AdminProductFormPage from './pages/AdminProductFormPage';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Protected> <Home></Home> </Protected>,
+  },
+  {
+    path: "/admin",
+    element: <ProtectedAdmin> <AdminHome></AdminHome> </ProtectedAdmin>,
   },
   {
     path: "/login",
@@ -61,6 +68,30 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Protected> <UserProfilePage></UserProfilePage> </Protected>
+  },
+ {
+    path: '/admin/product-detail/:id',
+    element: (
+      <ProtectedAdmin>
+        <AdminProductDetailPage></AdminProductDetailPage>
+      </ProtectedAdmin>
+    ),
+  },
+  {
+    path: '/admin/product-form',
+    element: (
+      <ProtectedAdmin>
+        <AdminProductFormPage></AdminProductFormPage>
+      </ProtectedAdmin>
+    ),
+  },
+  {
+    path: '/admin/product-form/edit/:id',
+    element: (
+      <ProtectedAdmin>
+        <AdminProductFormPage></AdminProductFormPage>
+      </ProtectedAdmin>
+    ),
   },
   {
     path: "/order-success/:id",
