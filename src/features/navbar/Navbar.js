@@ -13,11 +13,12 @@ const navigation = [
   { name: 'Dashboard', link: '#', user: true },
   { name: 'Team', link: '#', user: true },
   { name: 'Admin', link: '/admin', admin: true },
+  { name: 'Orders', link: '/admin/orders', admin: true },
+
 ];
 const userNavigation = [
-  { name: 'Your Profile', link: '/profile' },
-  { name: 'My Order', link: '/order' },
-  { name: 'Settings', link: '/settings' },
+  { name: 'My Profile', link: '/profile' },
+  { name: 'My Orders', link: '/orders' },
   { name: 'Sign out', link: '/logout' },
 ];
 
@@ -39,11 +40,9 @@ function NavBar({ children }) {
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
                       <Link to='/'>
-                        <img
-                          className="h-8 w-8"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                          alt="Your Company"
-                          />
+                      <h1 className="text-3xl text-white-900 text-white font-bold tracking-tight">
+              BreezyBuy 
+            </h1>
                       </Link>
                     </div>
                     <div className="hidden md:block">
@@ -218,13 +217,13 @@ function NavBar({ children }) {
           )}
         </Disclosure>
 
-        <header className="bg-white shadow">
+        {/* <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
               BreezyBuy 
             </h1>
           </div>
-        </header>
+        </header> */}
         <main>
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
             {children}

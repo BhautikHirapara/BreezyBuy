@@ -24,7 +24,7 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from '@heroicons/react/20/solid';
-import { ITEMS_PER_PAGE } from '../../../app/constants';
+import { ITEMS_PER_PAGE, discountedPrice } from '../../../app/constants';
 
 const sortOptions = [
   { name: 'Best Rating', sort: 'rating', order: 'desc', current: false },
@@ -116,7 +116,7 @@ export default function AdminProductList() {
         ></MobileFilter>
 
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-2">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
               All Products
             </h1>
@@ -510,10 +510,7 @@ function ProductGrid({ products }) {
                     </div>
                     <div>
                       <p className="text-sm block font-medium text-gray-900">
-                        $
-                        {Math.round(
-                          product.price * (1 - product.discountPercentage / 100)
-                        )}
+                      ${discountedPrice(product)}
                       </p>
                       <p className="text-sm block line-through font-medium text-gray-400">
                         ${product.price}
